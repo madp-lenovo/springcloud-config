@@ -1,0 +1,50 @@
+
+server:
+  port: 8111
+
+spring:
+  application:
+    name: AdminServer  # 应用名称必须保证全局唯一
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: ConfigServer   # location of the configuration server
+  zipkin:
+    enabled: false
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+
+eureka:
+  instance:
+    metadata-map:
+      instanceId: ${spring.application.name}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
+management:
+  security:
+    enabled: false
+
+
+#spring.sleuth.sampler.percentage=0.1
+#spring.zipkin.enabled=true
+#spring.zipkin.base-url=http://localhost:9001
+
+#eureka.instance.non-secure-port=${server.port:8888}
+#eureka.instance.metadata-map.instanceId=${spring.application.name}:${random.value}
+
+#eureka.client.serviceUrl.defaultZone=http://10.120.121.19:8761/eureka/
+#eureka.client.serviceUrl.defaultZone=http://10.100.83.223:8761/eureka/,http://10.100.83.74:8761/eureka/
+#eureka.instance.status-page-url-path=/health
+
+#management.context-path=/actuator
+
+#logging.file=/usr/local/madp/logs/boot-admin-sample.log
