@@ -17,6 +17,10 @@ spring:
       routes:
         endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
 
+sidecar:
+  port: 9000
+  health-uri: http://localhost:${sidecar.port}/health
+  
 eureka:
   instance:
     metadata-map:
