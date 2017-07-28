@@ -1,0 +1,3 @@
+sidecar:
+  port: 9000
+  health-uri: http://localhost:${sidecar.port}/health
