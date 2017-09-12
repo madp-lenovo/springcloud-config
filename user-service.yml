@@ -1,0 +1,6 @@
+mongodb:
+  serverAddress: localhost
+  source: demo
+  port: 27017
+  username:
+  password:
